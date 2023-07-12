@@ -1,7 +1,5 @@
 import 'package:atre_windows/Controller/patient_controller.dart';
-import 'package:atre_windows/Screens/Robots/hub_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import '../../Constants/myColors.dart';
 import '../../Constants/myWidgets.dart';
@@ -184,32 +182,34 @@ Widget editPatientDetails() {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    myWidgets.detailsText(title: "Patient Details"),
-                    const SizedBox(
-                      width: 40,
-                    ),
-                    myWidgets.buttonIconColor(
-                        borderColor: myColors.lightBlueColor,
-                        onPressed: () {
-                          snapshot.emptyShow();
-                        },
-                        icon: (Icons.edit_document),
-                        iconColor: myColors.lightBlueColor,
-                        labelText: 'Cancel',
-                        labelColor: myColors.lightBlueColor,
-                        backGroundColor: myColors.whiteColor),
-                    myWidgets.buttonIconColor(
-                        borderColor: myColors.greenColor,
-                        onPressed: () {
-                          snapshot.patientDetails();
-                        },
-                        icon: (Icons.edit_document),
-                        iconColor: myColors.greenColor,
-                        labelText: 'Save',
-                        labelColor: myColors.greenColor,
-                        backGroundColor: myColors.whiteColor),
+                    Expanded(
+                        child: myWidgets.detailsText(title: "Patient Details")),
+                    Row(children: [
+                      myWidgets.buttonIconColor(
+                          borderColor: myColors.lightBlueColor,
+                          onPressed: () {
+                            snapshot.emptyShow();
+                          },
+                          icon: (Icons.edit_document),
+                          iconColor: myColors.lightBlueColor,
+                          labelText: 'Cancel',
+                          labelColor: myColors.lightBlueColor,
+                          backGroundColor: myColors.whiteColor),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      myWidgets.buttonIconColor(
+                          borderColor: myColors.greenColor,
+                          onPressed: () {
+                            snapshot.patientDetails();
+                          },
+                          icon: (Icons.edit_document),
+                          iconColor: myColors.greenColor,
+                          labelText: 'Save',
+                          labelColor: myColors.greenColor,
+                          backGroundColor: myColors.whiteColor),
+                    ]),
                   ],
                 ),
                 const SizedBox(

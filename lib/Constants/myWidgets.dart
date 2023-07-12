@@ -142,7 +142,7 @@ class MyWidgets {
   }) {
     return Container(
       height: 40,
-      width: 150,
+      // width: 150,
       decoration: BoxDecoration(
           color: myColors.greyBg2Color,
           borderRadius: BorderRadius.circular(5.0)),

@@ -24,7 +24,7 @@ class _PatientFormState extends State<PatientForm> {
               //********************Patient Form******************//
               child: Padding(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 120, vertical: 30),
+                    const EdgeInsets.symmetric(horizontal: 120, vertical: 10),
                 child: Container(
                   height: 500,
                   width: double.infinity,

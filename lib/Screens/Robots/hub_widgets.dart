@@ -235,37 +235,42 @@ Widget robotDetailsEdit() {
             ],
           ),
           child: Padding(
-            padding: const EdgeInsets.all(30),
+            padding:
+                const EdgeInsets.only(top: 30, bottom: 30, right: 20, left: 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    myWidgets.detailsText(title: "Robot Details"),
-                    const SizedBox(
-                      width: 40,
+                    Expanded(
+                        child: myWidgets.detailsText(title: "Robot Details")),
+                    Row(
+                      children: [
+                        myWidgets.buttonIconColor(
+                            borderColor: myColors.lightBlueColor,
+                            onPressed: () {
+                              snapshot.emptyShow();
+                            },
+                            icon: (Icons.edit_document),
+                            iconColor: myColors.lightBlueColor,
+                            labelText: 'Cancel',
+                            labelColor: myColors.lightBlueColor,
+                            backGroundColor: myColors.whiteColor),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        myWidgets.buttonIconColor(
+                            borderColor: myColors.greenColor,
+                            onPressed: () {
+                              snapshot.robotDetailsShow();
+                            },
+                            icon: (Icons.edit_document),
+                            iconColor: myColors.greenColor,
+                            labelText: 'Save',
+                            labelColor: myColors.greenColor,
+                            backGroundColor: myColors.whiteColor),
+                      ],
                     ),
-                    myWidgets.buttonIconColor(
-                        borderColor: myColors.lightBlueColor,
-                        onPressed: () {
-                          snapshot.emptyShow();
-                        },
-                        icon: (Icons.edit_document),
-                        iconColor: myColors.lightBlueColor,
-                        labelText: 'Cancel',
-                        labelColor: myColors.lightBlueColor,
-                        backGroundColor: myColors.whiteColor),
-                    myWidgets.buttonIconColor(
-                        borderColor: myColors.greenColor,
-                        onPressed: () {
-                          snapshot.robotDetailsShow();
-                        },
-                        icon: (Icons.edit_document),
-                        iconColor: myColors.greenColor,
-                        labelText: 'Save',
-                        labelColor: myColors.greenColor,
-                        backGroundColor: myColors.whiteColor),
                   ],
                 ),
                 const SizedBox(
