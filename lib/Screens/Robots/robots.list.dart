@@ -28,53 +28,55 @@ class _RobotsListState extends State<RobotsList> {
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     return Scaffold(
-      body: Column(
-        children: [
-          const SizedBox(height: 20),
-          myWidgets.searchField(),
-          const SizedBox(height: 10),
-          SizedBox(
-            height: height / 2,
-            child: SfDataGrid(
-                gridLinesVisibility: GridLinesVisibility.none,
-                headerGridLinesVisibility: GridLinesVisibility.none,
-                source: robotDataSource!,
-                columnWidthMode: ColumnWidthMode.fill,
-                columns: <GridColumn>[
-                  GridColumn(
-                      columnName: 'Robot Name',
-                      label: Container(
-                          decoration: BoxDecoration(
-                              color: myColors.whiteColor,
-                              borderRadius: const BorderRadius.only(
-                                  topLeft: Radius.circular(10),
-                                  bottomLeft: Radius.circular(10))),
-                          padding: const EdgeInsets.all(16.0),
-                          alignment: Alignment.center,
-                          child: const Text(
-                            'Robot Name',
-                          ))),
-                  GridColumn(
-                      columnName: 'Robot location',
-                      label: Container(
-                          color: myColors.whiteColor,
-                          padding: const EdgeInsets.all(16.0),
-                          alignment: Alignment.center,
-                          child: const Text(
-                            'Robot Location',
-                          ))),
-                  GridColumn(
-                      columnName: 'button',
-                      label: Container(
-                          color: myColors.whiteColor,
-                          padding: const EdgeInsets.all(16.0),
-                          alignment: Alignment.center,
-                          child: const Text(
-                            '',
-                          ))),
-                ]),
-          )
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const SizedBox(height: 20),
+            myWidgets.searchField(),
+            const SizedBox(height: 10),
+            SizedBox(
+              height: height / 2,
+              child: SfDataGrid(
+                  gridLinesVisibility: GridLinesVisibility.none,
+                  headerGridLinesVisibility: GridLinesVisibility.none,
+                  source: robotDataSource!,
+                  columnWidthMode: ColumnWidthMode.fill,
+                  columns: <GridColumn>[
+                    GridColumn(
+                        columnName: 'Robot Name',
+                        label: Container(
+                            decoration: BoxDecoration(
+                                color: myColors.whiteColor,
+                                borderRadius: const BorderRadius.only(
+                                    topLeft: Radius.circular(10),
+                                    bottomLeft: Radius.circular(10))),
+                            padding: const EdgeInsets.all(16.0),
+                            alignment: Alignment.center,
+                            child: const Text(
+                              'Robot Name',
+                            ))),
+                    GridColumn(
+                        columnName: 'Robot location',
+                        label: Container(
+                            color: myColors.whiteColor,
+                            padding: const EdgeInsets.all(16.0),
+                            alignment: Alignment.center,
+                            child: const Text(
+                              'Robot Location',
+                            ))),
+                    GridColumn(
+                        columnName: 'button',
+                        label: Container(
+                            color: myColors.whiteColor,
+                            padding: const EdgeInsets.all(16.0),
+                            alignment: Alignment.center,
+                            child: const Text(
+                              '',
+                            ))),
+                  ]),
+            )
+          ],
+        ),
       ),
     );
   }

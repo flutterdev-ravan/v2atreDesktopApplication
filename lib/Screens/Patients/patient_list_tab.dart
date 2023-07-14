@@ -34,57 +34,59 @@ class _PatientListState extends State<PatientList> {
 
     return Scaffold(
       body: Consumer<PatientProvider>(
-        builder: (context, snapshot, child) => Column(
-          children: [
-            const SizedBox(height: 20),
-            myWidgets.searchField(),
-            const SizedBox(height: 10),
-            SizedBox(
-              height: height / 2,
-              child: SfDataGrid(
-                  gridLinesVisibility: GridLinesVisibility.none,
-                  headerGridLinesVisibility: GridLinesVisibility.none,
-                  source: patientDataSource!,
-                  onCellTap: (details) {
-                    snapshot.patientDetails();
-                  },
-                  columnWidthMode: ColumnWidthMode.fill,
-                  columns: <GridColumn>[
-                    GridColumn(
-                        columnName: 'patientID',
-                        label: Container(
-                            decoration: BoxDecoration(
-                                color: myColors.whiteColor,
-                                borderRadius: const BorderRadius.only(
-                                    topLeft: Radius.circular(10),
-                                    bottomLeft: Radius.circular(10))),
-                            padding: const EdgeInsets.all(16.0),
-                            alignment: Alignment.center,
-                            child: const Text(
-                              'Patient ID',
-                            ))),
-                    GridColumn(
-                      columnName: 'Name',
-                      label: Container(
-                          color: myColors.whiteColor,
-                          padding: const EdgeInsets.all(16.0),
-                          alignment: Alignment.center,
-                          child: const Text(
-                            'Name',
-                          )),
-                    ),
-                    GridColumn(
-                        columnName: 'location',
+        builder: (context, snapshot, child) => SingleChildScrollView(
+          child: Column(
+            children: [
+              const SizedBox(height: 20),
+              myWidgets.searchField(),
+              const SizedBox(height: 10),
+              SizedBox(
+                height: height / 2,
+                child: SfDataGrid(
+                    gridLinesVisibility: GridLinesVisibility.none,
+                    headerGridLinesVisibility: GridLinesVisibility.none,
+                    source: patientDataSource!,
+                    onCellTap: (details) {
+                      snapshot.patientDetails();
+                    },
+                    columnWidthMode: ColumnWidthMode.fill,
+                    columns: <GridColumn>[
+                      GridColumn(
+                          columnName: 'patientID',
+                          label: Container(
+                              decoration: BoxDecoration(
+                                  color: myColors.whiteColor,
+                                  borderRadius: const BorderRadius.only(
+                                      topLeft: Radius.circular(10),
+                                      bottomLeft: Radius.circular(10))),
+                              padding: const EdgeInsets.all(16.0),
+                              alignment: Alignment.center,
+                              child: const Text(
+                                'Patient ID',
+                              ))),
+                      GridColumn(
+                        columnName: 'Name',
                         label: Container(
                             color: myColors.whiteColor,
                             padding: const EdgeInsets.all(16.0),
                             alignment: Alignment.center,
                             child: const Text(
-                              'Location',
-                            ))),
-                  ]),
-            )
-          ],
+                              'Name',
+                            )),
+                      ),
+                      GridColumn(
+                          columnName: 'location',
+                          label: Container(
+                              color: myColors.whiteColor,
+                              padding: const EdgeInsets.all(16.0),
+                              alignment: Alignment.center,
+                              child: const Text(
+                                'Location',
+                              ))),
+                    ]),
+              )
+            ],
+          ),
         ),
       ),
     );
