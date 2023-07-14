@@ -7,9 +7,57 @@ import 'package:atre_windows/Model/appointmentModel/appointment_model.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
+import '../Model/appointmentModel/createAppointmentModel.dart';
 import '../Model/patientModel/patient_details_model.dart';
 
 class AppoinmentApi extends ChangeNotifier {
+  // ******************************************* CREATE APPOINTMENT ***********************************************8
+
+  Future<CreateNewAppointmentModel?> createAppointment(
+      {required String patientName,
+      required String refDocName,
+      required String scanType,
+      required String diffDiagnosis,
+      required String appointmentDate,
+      required String appointmentTime,
+      required String location}) async {
+    final http.Response response =
+        await http.post(Uri.parse("${baseUrl}create-new-appointments"),
+            headers: <String, String>{
+              'Content-Type': 'application/json; charset=UTF-8',
+              'user-agent': version,
+              'Authorization': 'Bearer $globalAccessToken'
+            },
+            body: jsonEncode(<String, String>{
+              "patient_id": "patient-cd81ad2e-9783-4b91-867d-1b94f6af687a",
+              "patient_name": patientName,
+              "referred_doctor": refDocName,
+              "scan_type": scanType,
+              "differential_diagnosis": diffDiagnosis,
+              "appointment_date": appointmentDate,
+              "appointment_time": appointmentTime,
+              "appointment_location": location,
+              "hub_id": "hub-ab3c98a6-bf64-4cf3-8ffb-8401bb5b3b04",
+              "doctor_id": "doctor-cd81ad2e-9783-4b91-867d-1b94f6af687a",
+              "robot_id": "robot-076803af-8c57-4289-a5b8-cc3d9feeb136"
+            }));
+
+    try {
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+
+        print(data);
+
+        notifyListeners();
+        return createNewAppointmentModelFromJson(response.body);
+      } else {
+        return createNewAppointmentModelFromJson(response.body);
+      }
+    } catch (e) {
+      print("CreateNewAppointmentModel Error:--> $e");
+    }
+  }
+
   // ******************************************* APPOINTMENT LIST ***********************************************
 
   List<AppointmentList> _appointments = [];
@@ -21,22 +69,12 @@ class AppoinmentApi extends ChangeNotifier {
     final List<dynamic> appointmentList = parsed['data'];
     return appointmentList.map((json) {
       return AppointmentList(
-        appointmentId: json["appointment_id"],
         patientId: json["patient_id"],
-        referredDoctor: json["referred_doctor"],
-        scanType: json["scan_type"],
-        differentialDiagnosis: json["differential_diagnosis"],
+        patientName: json["patient_name"],
+        radiologistName: json["radiologist_name"],
         appointmentDate: DateTime.parse(json["appointment_date"]),
         appointmentTime: json["appointment_time"],
-        appointmentLocation: json["appointment_location"],
-        createdAt: DateTime.parse(json["created_at"]),
-        hubId: json["hub_id"],
-        clientId: json["client_id"],
-        patientName: json["patient_name"],
-        callUrl: json["call_url"],
-        doctorId: json["doctor_id"],
-        createdBy: json["created_by"],
-        robotId: json["robot_id"],
+        robotLocation: json["robot_location"],
       );
     }).toList();
   }
@@ -80,6 +118,7 @@ class AppoinmentApi extends ChangeNotifier {
         for (var i = 0; i < value.data.length; i++) {
           patientNameList.add(value.data[i].patientName);
         }
+
         patientList = [...value.data];
         print("patientNameList: $patientNameList");
         notifyListeners();
@@ -96,7 +135,10 @@ class AppoinmentApi extends ChangeNotifier {
           'user-agent': version,
           'Authorization': 'Bearer $globalAccessToken'
         },
-        body: jsonEncode(<String, dynamic>{"patient_phone_number": mobNumber}));
+        body: jsonEncode(<String, dynamic>{
+          "patient_phone_number": mobNumber,
+          "client_id": globalUserID
+        }));
 
     try {
       if (response.statusCode == 200) {

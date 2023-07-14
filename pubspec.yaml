@@ -67,6 +67,7 @@ flutter:
   - assets/images/bg.svg
   - assets/Doctor1.json
   - assets/images/
+  - assets/ca/lets-encrypt-r3.pem
 
 
 

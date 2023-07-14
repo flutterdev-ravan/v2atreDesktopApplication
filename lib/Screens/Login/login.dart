@@ -153,41 +153,42 @@ class _LoginState extends State<Login> {
                                     context: context,
                                     height: 22,
                                     onTap: () {
-                                      // if (_formKey.currentState!.validate()) {
-                                      //   _loginApi
-                                      //       .loginPost(
-                                      //           snapshot.emailController.text,
-                                      //           snapshot.passwordTextController
-                                      //               .text)
-                                      //       .then((value) async {
-                                      //     if (value!.status == true) {
-                                      //       //================== Local Storage ===========
-                                      //       await CommonLocalStorage()
-                                      //           .saveLocalStorageToken(json
-                                      //               .encode(value.data.jwt));
-                                      //       await CommonLocalStorage()
-                                      //           .saveLocalStorageUserID(json
-                                      //               .encode(value.data.userId));
-                                      //       // =======================================flutter =======
-                                      Navigator.push(context,
-                                          MaterialPageRoute(builder: (context) {
-                                        return const SideBar();
-                                      }));
-                                      //       print(
-                                      //           "Access Token: $globalAccessToken");
-                                      //       print("User ID: $globalUserID");
-                                      //     } else {
-                                      //       myWidgets.toastMsg(
-                                      //           context: context,
-                                      //           msg:
-                                      //               "user email or password is incorrect!");
-                                      //       print(
-                                      //           "user email or password is incorrect");
-                                      //     }
-                                      //   });
-                                      // } else {
-                                      //   print("Not A Valid User");
-                                      // }
+                                      if (_formKey.currentState!.validate()) {
+                                        _loginApi
+                                            .loginPost(
+                                                snapshot.emailController.text,
+                                                snapshot.passwordTextController
+                                                    .text)
+                                            .then((value) async {
+                                          if (value!.status == true) {
+                                            //================== Local Storage ===========
+                                            await CommonLocalStorage()
+                                                .saveLocalStorageToken(json
+                                                    .encode(value.data.jwt));
+                                            await CommonLocalStorage()
+                                                .saveLocalStorageUserID(json
+                                                    .encode(value.data.userId));
+                                            // =======================================flutter =======
+                                            Navigator.push(context,
+                                                MaterialPageRoute(
+                                                    builder: (context) {
+                                              return const SideBar();
+                                            }));
+                                            print(
+                                                "Access Token: $globalAccessToken");
+                                            print("User ID: $globalUserID");
+                                          } else {
+                                            myWidgets.toastMsg(
+                                                context: context,
+                                                msg:
+                                                    "user email or password is incorrect!");
+                                            print(
+                                                "user email or password is incorrect");
+                                          }
+                                        });
+                                      } else {
+                                        print("Not A Valid User");
+                                      }
                                     },
                                     title: 'Login'),
                               ],

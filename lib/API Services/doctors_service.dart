@@ -47,7 +47,7 @@ class DoctorApi extends ChangeNotifier {
         return null;
       }
     } catch (e) {
-      print("Error:-->$e");
+      print("generatedDoctorList Error:-->$e");
     }
   }
 
@@ -65,9 +65,9 @@ class DoctorApi extends ChangeNotifier {
           doctorNameList.add(value.data[i].doctorName);
         }
 
-        print("doctorNameList: $doctorNameList");
         notifyListeners();
       }
+      print("doctorNameList: $doctorNameList");
     });
   }
 
@@ -93,7 +93,7 @@ class DoctorApi extends ChangeNotifier {
         return doctorDetailsModelFromJson(response.body);
       }
     } catch (e) {
-      print("Error:--> $e");
+      print("doctorDetailsList Error:--> $e");
     }
     return null;
   }

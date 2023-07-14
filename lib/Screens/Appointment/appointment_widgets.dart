@@ -571,7 +571,6 @@ class AppointmentWidgets {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20),
       child: TextFormField(
-        
           controller: controller,
           keyboardType: type,
           maxLines: maxLines,
@@ -589,7 +588,6 @@ class AppointmentWidgets {
                 ),
               ),
               labelText: labelText,
-              
               hintText: hintText,
               labelStyle: TextStyle(color: myColors.greenColor))),
     );
@@ -598,12 +596,14 @@ class AppointmentWidgets {
   Widget dropdownButton(
       {required String labelText,
       required List<dynamic> items,
-      required Function(dynamic)? onChange}) {
+      required Function(dynamic)? onChange,
+      required String? Function(dynamic) validator}) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 14),
       child: DropdownSearch<dynamic>(
         onChanged: onChange,
         items: items,
+        validator: validator,
         dropdownDecoratorProps: DropDownDecoratorProps(
           dropdownSearchDecoration: InputDecoration(
               labelText: labelText,

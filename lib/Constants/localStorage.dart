@@ -1,8 +1,7 @@
 // ignore_for_file: file_names
 import 'package:localstorage/localstorage.dart';
 
-const String baseUrl =
-    "https://test-atre-server-v2.up.railway.app/api-v2/admin/";
+const String baseUrl = "https://tr.atrehealthtech.com/beta-atre/api-v2/admin/";
 
 const String version = 'atre_application_desktop_0.0.2';
 String? globalAccessToken;
